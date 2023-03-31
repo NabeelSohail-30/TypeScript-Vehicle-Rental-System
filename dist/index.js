@@ -23,20 +23,20 @@ class Vehicle {
     }
     rent() {
         if (this._rented) {
-            return `Sorry, this ${this._make} ${this._model} is already rented.`;
+            return `Sorry, this vehicle is already rented.`;
         }
         else {
             this._rented = true;
-            return `You have rented a ${this._make} ${this._model}.`;
+            return `You have rented a ${this._make} ${this._model} ${this._year} with Rental Price of ${this.rentalRate()}$ USD per Day.`;
         }
     }
     return() {
         if (this._rented) {
             this._rented = false;
-            return `You have returned the ${this._make} ${this._model}. Thank you for renting with us!`;
+            return `You have rented a ${this._make} ${this._model} ${this._year} with Rental Price of ${this.rentalRate()}$ USD per Day. Thank you for renting with us!`;
         }
         else {
-            return `This ${this._make} ${this._model} is not currently rented.`;
+            return `This ${this._make} ${this._model} ${this._year} is not currently rented.`;
         }
     }
 }
@@ -47,7 +47,6 @@ class Car extends Vehicle {
         this._numPassengers = numPassengers;
     }
     rentalRate() {
-        // Example implementation: $50/day for a car
         return 50;
     }
     get numDoors() {
@@ -63,7 +62,6 @@ class Truck extends Vehicle {
         this._payloadCapacity = payloadCapacity;
     }
     rentalRate() {
-        // Example implementation: $100/day for a truck
         return 100;
     }
     get payloadCapacity() {
@@ -76,15 +74,22 @@ class Motorcycle extends Vehicle {
         this._engineSize = engineSize;
     }
     rentalRate() {
-        // Example implementation: $25/day for a motorcycle
         return 25;
     }
     get engineSize() {
         return this._engineSize;
     }
 }
+console.log('\n------------Car-------------\n');
 const car = new Car('Toyota', 'Corolla', 2021, false, 4, 5);
-console.log(car.rent()); // "You have rented a Toyota Corolla."
-console.log(car.return()); // "You have returned the Toyota Corolla. Thank you for renting with us!"
 console.log(car.rent());
+console.log(car.return());
+console.log('\n-------------Truck-----------------\n');
+const truck = new Truck('Ford', 'F-150', 2021, false, 1000);
+console.log(truck.rent());
+console.log(truck.return());
+console.log('\n-------------Bike---------------\n');
+const bike = new Motorcycle('Honda', 'CBR', 2021, false, 1000);
+console.log(bike.rent());
+console.log(bike.return());
 //# sourceMappingURL=index.js.map
